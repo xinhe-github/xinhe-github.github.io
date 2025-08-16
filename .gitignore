@@ -3,7 +3,7 @@ _site/
 .sass-cache/
 
 # Ignore the directory for local files during development
-local/
+vendor/
 images/Xinhe_Photo.jpg
 
 # Ignore the Gemfile that is generated
