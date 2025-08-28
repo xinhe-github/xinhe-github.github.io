@@ -82,6 +82,11 @@ for row, item in publications.iterrows():
     md += "\ndate: " + str(item.pub_date) 
     
     md += "\nvenue: '" + html_escape(item.venue) + "'"
+
+    # Optional category to group on publications page (e.g., manuscripts, conferences, books)
+    if 'category' in publications.columns:
+        if str(item.category) and str(item.category).strip() not in ['nan', '']:
+            md += "\ncategory: " + str(item.category).strip()
     
     if len(str(item.paper_url)) > 5:
         md += "\npaperurl: '" + item.paper_url + "'"
@@ -94,6 +99,11 @@ for row, item in publications.iterrows():
     
     if len(str(item.paper_url)) > 5:
         md += "\n\n<a href='" + item.paper_url + "'>Download paper here</a>\n" 
+
+    # Optional slides link
+    if 'slides_url' in publications.columns:
+        if len(str(item.slides_url)) > 5:
+            md += "\n<a href='" + str(item.slides_url) + "'>Download slides here</a>\n"
         
     if len(str(item.excerpt)) > 5:
         md += "\n" + html_escape(item.excerpt) + "\n"
